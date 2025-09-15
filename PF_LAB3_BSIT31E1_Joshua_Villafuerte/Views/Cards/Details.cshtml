@@ -1,0 +1,72 @@
+﻿@* TODO:
+   - Show full card details: Image, Name, Rarity, Description.
+   - Include Edit and Delete buttons visible to authorized users only.
+   - Display additional stats or flavor text if available.
+   - Ensure image uses meaningful alt text and scales correctly.
+*@
+
+@model PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models.Card
+
+@{
+    ViewData["Title"] = "Card Details";
+}
+
+<div class="details-container text-light">
+    <h1 class="mb-4 text-success fw-bold"> @Model.Name</h1>
+
+    <div class="card detail-card shadow-lg border-0">
+        <img src="@(!string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/Image/placeholder.png")"
+             class="card-img-top img-fluid glowing-img"
+             alt="@Model.Name" />
+
+        <div class="card-body">
+            <h5 class="card-title text-warning">@Model.Name</h5>
+            <p><span class="badge bg-info text-dark">@Model.Rarity</span></p>
+            <p class="card-text">@Model.Description</p>
+
+            <div class="d-flex gap-2 mt-3">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning glow-btn"> Edit</a>
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger glow-btn"> Delete</a>
+                <a asp-action="Index" class="btn btn-secondary glow-btn">⬅ Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .details-container {
+            padding: 20px;
+            background: linear-gradient(180deg, #000, #111, #0a0f0a);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+        }
+
+        .detail-card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+            .detail-card:hover {
+                transform: scale(1.02);
+                box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+            }
+
+        .glowing-img {
+            border-bottom: 2px solid #00ff99;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+
+        .glow-btn {
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .glow-btn:hover {
+                box-shadow: 0 0 15px rgba(0, 255, 0, 1);
+                transform: scale(1.05);
+            }
+    </style>
+}

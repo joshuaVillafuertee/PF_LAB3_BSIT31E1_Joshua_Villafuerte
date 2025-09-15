@@ -1,0 +1,89 @@
+﻿@* TODO:
+   - Pre-fill form with existing card data.
+   - Allow replacing the image (file input) and show current thumbnail.
+   - Keep validation similar to Create.
+   - Handle saving new image and deleting/keeping old file as needed.
+*@
+
+@model PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models.Card
+
+@{
+    ViewData["Title"] = "Edit Card";
+}
+
+<div class="form-container text-light">
+    <h1 class="mb-4 text-warning fw-bold">Edit Card</h1>
+
+    <form asp-action="Edit" enctype="multipart/form-data" method="post" class="greed-form">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control dark-input" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Rarity" class="form-label"></label>
+            <input asp-for="Rarity" class="form-control dark-input" />
+            <span asp-validation-for="Rarity" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control dark-input"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="imageFile" class="form-label">Change Image</label>
+            <input type="file" name="imageFile" class="form-control dark-input" />
+        </div>
+
+        <div class="mb-3">
+            <p>Current Image:</p>
+            <img src="@(!string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/Image/placeholder.png")"
+                 alt="@Model.Name"
+                 class="img-thumbnail" width="150" />
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-warning glow-btn">Save</button>
+            <a asp-action="Index" class="btn btn-secondary glow-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <style>
+        .form-container {
+            padding: 20px;
+            background: linear-gradient(180deg, #000, #111, #0a0f0a);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 200, 0, 0.4);
+        }
+
+        .dark-input {
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #444;
+        }
+
+            .dark-input:focus {
+                border-color: #ffaa00;
+                box-shadow: 0 0 10px #ffaa00;
+            }
+
+        .glow-btn {
+            box-shadow: 0 0 8px rgba(255, 200, 0, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .glow-btn:hover {
+                box-shadow: 0 0 15px rgba(255, 200, 0, 1);
+                transform: scale(1.05);
+            }
+    </style>
+}

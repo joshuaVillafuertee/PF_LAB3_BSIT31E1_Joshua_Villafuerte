@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="home-container text-center d-flex flex-column align-items-center justify-content-center">
+    <h1 class="display-3 fw-bold text-success mb-3">WELCOME TO GREED ISLAND</h1>
+    <p class="lead text-light mb-4">
+        Collect, edit, and manage your <span class="text-success">Greed Island Cards</span>.
+    </p>
+    <div>
+        <a class="btn btn-outline-primary btn-lg me-3 glow-btn" asp-controller="Cards" asp-action="Index">
+            View Cards
+        </a>
+        <a class="btn btn-success btn-lg glow-btn" asp-controller="Cards" asp-action="Create">
+            Add New Card
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+        
+        .home-container {
+            min-height: 70vh;
+            background: linear-gradient(180deg, #000000, #111111, #0a0f0a);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.2);
+        }
+
+       
+        .glow-btn {
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .glow-btn:hover {
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.9);
+                transform: scale(1.05);
+            }
+    </style>
+}

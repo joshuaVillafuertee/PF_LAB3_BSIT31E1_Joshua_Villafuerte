@@ -1,0 +1,31 @@
+/* Banner background */
+.banner {
+    background: url('/Image/greed-island-banner.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100px; /* you can adjust */
+    position: relative;
+}
+
+    /* Navbar overlay */
+    .banner .navbar {
+        background: rgba(0, 0, 0, 0.4); /* transparent overlay */
+    }
+
+/* General theme */
+body {
+    background-color: #111;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3 {
+    color: #0f0;
+}
+
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }

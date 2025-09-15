@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models.Card>
+
+@{
+    ViewData["Title"] = "Cards";
+}
+
+<div class="cards-container text-light">
+    <h1 class="mb-4 text-success fw-bold">Greed Island Cards</h1>
+
+    <p>
+        <a class="btn btn-primary glow-btn" asp-action="Create">Create New Card</a>
+    </p>
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var c in Model)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card h-100 glowing-card border-0 shadow-lg">
+                        <img src="@(!string.IsNullOrEmpty(c.ImageUrl) ? c.ImageUrl : Url.Content("~/Image/placeholder.png"))"
+                             class="card-img-top glowing-img"
+                             alt="@c.Name card image" />
+
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-warning fw-bold">@c.Name</h5>
+                            <p>
+                                <span class="badge bg-info text-dark">@c.Rarity</span>
+                            </p>
+                            <a class="btn btn-outline-success glow-btn"
+                               asp-action="Details"
+                               asp-route-id="@c.Id">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p class="text-muted text-center">No cards available. Try creating one!</p>
+            </div>
+        }
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .cards-container {
+            padding: 20px;
+            background: linear-gradient(180deg, #000, #111, #0a0f0a);
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+        }
+
+        .glowing-card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .glowing-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+            }
+
+        .glowing-img {
+            border-bottom: 2px solid #00ff99;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .glow-btn {
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .glow-btn:hover {
+                box-shadow: 0 0 15px rgba(0, 255, 0, 1);
+                transform: scale(1.05);
+            }
+    </style>
+}

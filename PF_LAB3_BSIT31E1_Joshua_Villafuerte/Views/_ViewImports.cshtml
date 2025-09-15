@@ -1,0 +1,33 @@
+﻿@using PF_LAB3_BSIT31E1_Joshua_Villafuerte
+@using PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models.Card>
+
+@{
+    ViewData["Title"] = "Cards";
+}
+
+<h1>Greed Island Cards</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New Card</a>
+</p>
+
+<div class="row">
+    @foreach (var c in Model)
+    {
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <img src="@(!string.IsNullOrEmpty(c.ImageUrl) ? c.ImageUrl : "/images/placeholder.png")" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">@c.Name</h5>
+                    <p class="card-text">@c.Rarity</p>
+                    <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@c.Id">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
