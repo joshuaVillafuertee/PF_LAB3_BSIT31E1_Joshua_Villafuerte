@@ -1,12 +1,4 @@
-﻿@* TODO:
-   - Create form fields: Name (required), Rarity (select), Description (textarea).
-   - Add file input for character image: <input type="file" name="imageFile" />.
-   - Form must use enctype="multipart/form-data".
-   - Server & client side validation for required fields.
-   - After successful create, redirect to Index or Details.
-*@
-
-@model PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models.Card
+﻿@model PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models.Card
 
 @{
     ViewData["Title"] = "Create Card";
@@ -15,35 +7,58 @@
 <div class="form-container text-light">
     <h1 class="mb-4 text-success fw-bold">Create New Card</h1>
 
-    <form asp-action="Create" enctype="multipart/form-data" method="post" class="greed-form">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
 
         <div class="mb-3">
-            <label asp-for="Name" class="form-label"></label>
-            <input asp-for="Name" class="form-control dark-input" />
+            <label asp-for="Name" class="form-label text-warning"></label>
+            <input asp-for="Name" class="form-control bg-dark text-light border-success" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="Rarity" class="form-label"></label>
-            <input asp-for="Rarity" class="form-control dark-input" />
+            <label asp-for="Rarity" class="form-label text-warning"></label>
+            <input asp-for="Rarity" class="form-control bg-dark text-light border-success" />
             <span asp-validation-for="Rarity" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <textarea asp-for="Description" class="form-control dark-input"></textarea>
+            <label asp-for="Description" class="form-label text-warning"></label>
+            <textarea asp-for="Description" class="form-control bg-dark text-light border-success"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label for="imageFile" class="form-label">Upload Image</label>
-            <input type="file" name="imageFile" class="form-control dark-input" />
+            <label class="form-label text-warning">Upload Image</label>
+            <input type="file" name="imageFile" class="form-control bg-dark text-light border-success" />
         </div>
 
         <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-success glow-btn">Create</button>
-            <a asp-action="Index" class="btn btn-secondary glow-btn">Cancel</a>
+            <button type="submit" class="btn btn-success glow-btn"> Save</button>
+            <a asp-action="Index" class="btn btn-secondary glow-btn">⬅ Back</a>
         </div>
     </form>
 </div>
+
+@section Styles {
+    <style>
+        .form-container {
+            padding: 20px;
+            background: linear-gradient(180deg, #000, #111, #0a0f0a);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .glow-btn {
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .glow-btn:hover {
+                box-shadow: 0 0 15px rgba(0, 255, 0, 1);
+                transform: scale(1.05);
+            }
+    </style>
+}

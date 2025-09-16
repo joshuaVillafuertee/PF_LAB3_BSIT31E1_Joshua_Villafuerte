@@ -1,21 +1,14 @@
-﻿@* TODO:
-   - Show full card details: Image, Name, Rarity, Description.
-   - Include Edit and Delete buttons visible to authorized users only.
-   - Display additional stats or flavor text if available.
-   - Ensure image uses meaningful alt text and scales correctly.
-*@
-
-@model PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models.Card
+﻿@model PF_LAB3_BSIT31E1_Joshua_Villafuerte.Models.Card
 
 @{
     ViewData["Title"] = "Card Details";
 }
 
 <div class="details-container text-light">
-    <h1 class="mb-4 text-success fw-bold"> @Model.Name</h1>
+    <h1 class="mb-4 text-success fw-bold">@Model.Name</h1>
 
     <div class="card detail-card shadow-lg border-0">
-        <img src="@(!string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/Image/placeholder.png")"
+        <img src="@(!string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : Url.Content("~/Image/placeholder.png"))"
              class="card-img-top img-fluid glowing-img"
              alt="@Model.Name" />
 
@@ -25,7 +18,7 @@
             <p class="card-text">@Model.Description</p>
 
             <div class="d-flex gap-2 mt-3">
-                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning glow-btn"> Edit</a>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning glow-btn">Edit</a>
                 <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger glow-btn"> Delete</a>
                 <a asp-action="Index" class="btn btn-secondary glow-btn">⬅ Back</a>
             </div>
